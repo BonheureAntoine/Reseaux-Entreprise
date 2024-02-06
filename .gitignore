@@ -36,4 +36,5 @@
 # typescript
 /web/website/app/*.tsbuildinfo
 
-/web/website/app/.env
+/web/website/app/*.env
+/web/db/*.env
