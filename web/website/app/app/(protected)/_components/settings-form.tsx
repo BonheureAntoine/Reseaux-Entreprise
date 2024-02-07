@@ -92,37 +92,39 @@ export const SettingsForm = () => {
                                     </FormItem>
                                 )}
                             />
-                            {data?.user.provider === "credentials" && (
-                                <FormField
-                                    name="isTwoFactorEnabled"
-                                    control={form.control}
-                                    render={({ field }) => (
-                                        <FormItem className="flex flex-row justify-between items-center">
-                                            <FormLabel className="text-md">
-                                                Enable Two Factor Authentication
-                                            </FormLabel>
-                                            <FormControl>
-                                                <Switch
-                                                    {...field}
-                                                    className="ml-2"
-                                                    disabled={isPending}
-                                                    checked={field.value}
-                                                    onCheckedChange={
-                                                        field.onChange
-                                                    }
-                                                    value={
-                                                        field.value
-                                                            ? "true"
-                                                            : "false"
-                                                    } // Fix: Convert boolean value to string
-                                                    aria-readonly
-                                                />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                            )}
+                            {data?.user.provider !== "github" &&
+                                data?.user.provider !== "google" && (
+                                    <FormField
+                                        name="isTwoFactorEnabled"
+                                        control={form.control}
+                                        render={({ field }) => (
+                                            <FormItem className="flex flex-row justify-between items-center">
+                                                <FormLabel className="text-md">
+                                                    Enable Two Factor
+                                                    Authentication
+                                                </FormLabel>
+                                                <FormControl>
+                                                    <Switch
+                                                        {...field}
+                                                        className="ml-2"
+                                                        disabled={isPending}
+                                                        checked={field.value}
+                                                        onCheckedChange={
+                                                            field.onChange
+                                                        }
+                                                        value={
+                                                            field.value
+                                                                ? "true"
+                                                                : "false"
+                                                        } // Fix: Convert boolean value to string
+                                                        aria-readonly
+                                                    />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                )}
                         </div>
                         <FormError message={error} />
                         <FormSuccess message={success} />
