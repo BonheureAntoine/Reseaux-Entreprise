@@ -19,7 +19,7 @@ services:
         restart: always
         env_file:
             - stack.env
-        args:
+        environment:
             - NODE_ENV=${NODE_ENV}
             - DATABASE_URL=${DATABASE_URL}
             - AUTH_SECRET=${AUTH_SECRET}
