@@ -120,8 +120,15 @@ interface Vlan30
  ip helper-address 192.168.2.1
  standby version 2
  standby 30 ip 192.168.3.254
- standby 30 priority 105
  standby 30 preempt
+!
+interface Vlan110
+ ip address 192.168.11.3 255.255.255.0
+ ip helper-address 192.168.2.1
+ standby version 2
+ standby 110 ip 192.168.11.1
+ standby 110 preempt
+
 !
 router ospf 1
  router-id 3.3.3.3
