@@ -102,7 +102,6 @@ interface Vlan10
  ip helper-address 192.168.2.1
  standby version 2
  standby 10 ip 192.168.1.254
- standby 10 priority 105
  standby 10 preempt
 !
 interface Vlan20
@@ -110,7 +109,6 @@ interface Vlan20
  ip helper-address 192.168.2.1
  standby version 2
  standby 20 ip 192.168.2.254
- standby 20 priority 105
  standby 20 preempt
 !
 interface Vlan30
@@ -121,6 +119,15 @@ interface Vlan30
  standby 30 priority 95
  standby 30 preempt
 !
+interface Vlan110
+ ip address 192.168.11.2 255.255.255.0
+ ip helper-address 192.168.2.1
+ standby version 2
+ standby 110 ip 192.168.11.1
+ standby 110 priority 95
+ standby 110 preempt
+!
+
 router ospf 1
  router-id 2.2.2.2
  log-adjacency-changes
