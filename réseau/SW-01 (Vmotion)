@@ -1,0 +1,117 @@
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+!
+hostname SW-1
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$/m8k$x5ewNphBDcijNN5NsJl6W.
+enable password 7 106C0615115A43595F
+!
+username admin secret 5 $1$NWUU$RFDXKLaxOQXIMGNSkx2t0.
+no aaa new-model
+system mtu routing 1500
+!
+!
+ip domain-name bolt.mom
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+ip ssh version 2
+!
+!
+!
+!
+!
+interface FastEthernet0/1
+!
+interface FastEthernet0/2
+!
+interface FastEthernet0/3
+!
+interface FastEthernet0/4
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+!
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+!
+interface FastEthernet0/9
+!
+interface FastEthernet0/10
+!
+interface FastEthernet0/11
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+!
+interface FastEthernet0/14
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan30
+ ip address 192.168.3.1 255.255.255.0
+!
+ip default-gateway 192.168.3.254
+ip http server
+ip http secure-server
+logging esm config
+access-list 1 permit 192.168.3.0 0.0.0.255
+access-list 1 deny   any
+!
+line con 0
+ password 7 1530040010677A767B
+ logging synchronous
+ login
+line vty 0 4
+ access-class 1 in
+ login local
+ transport input ssh
+line vty 5 15
+ access-class 1 in
+ login local
+ transport input ssh
+!
+end
