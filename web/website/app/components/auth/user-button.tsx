@@ -1,15 +1,15 @@
 "use client";
 
-import { User2Icon, LogOut } from "lucide-react";
+import { LogOut, User2Icon } from "lucide-react";
 
+import { LogoutButton } from "@/components/auth/logout-button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { LogoutButton } from "@/components/auth/logout-button";
 
 import { useCurrentUser } from "@/hooks/use-current-user";
 

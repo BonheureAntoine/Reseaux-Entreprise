@@ -24,3 +24,8 @@ export const SettingsSchema = z.object({
     name: z.optional(z.string()),
     isTwoFactorEnabled: z.boolean(),
 });
+
+export const CourseSchema = z.object({
+    title: z.string().min(1, { message: "Title is required" }),
+    description: z.string().optional(),
+});
