@@ -23,9 +23,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { CourseSchema } from "@/schemas";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export const CourseDialog = () => {
+    const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
 
     const form = useForm<z.infer<typeof CourseSchema>>({
@@ -50,6 +52,7 @@ export const CourseDialog = () => {
             });
         form.reset();
         setIsOpen(false);
+        router.refresh();
     };
 
     return (
