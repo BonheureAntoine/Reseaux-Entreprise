@@ -5,19 +5,22 @@ WORKDIR /app
 
 COPY app/package*.json ./
 
+COPY ./app .
+
 RUN npm install
 
 RUN npm i sharp
-
-COPY ./app .
 
 COPY ./entrypoint.sh ./entrypoint.sh
 RUN chmod +x ./entrypoint.sh
 
 RUN npx prisma generate
 
-RUN npm run build
 
 EXPOSE 3000
 
-ENTRYPOINT [ "./entrypoint.sh" ]
+CMD [ "npm", "run", "dev" ] 
+
+
+
+# ENTRYPOINT [ "./entrypoint.sh" ]
