@@ -1,0 +1,103 @@
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+!
+hostname R0
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$ZkZy$ueEqRJq2iRZHEPFsdTtAQ0
+enable password 7 112B1609035F5A5E57
+!
+no aaa new-model
+ip cef
+!
+!
+!
+!
+ip domain name bolt.mom
+multilink bundle-name authenticated
+!
+!
+username admin privilege 15 password 7 00261C0A10165A545C
+archive
+ log config
+  hidekeys
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 192.168.10.254 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1
+ ip address 193.190.65.86 255.255.255.248
+ ip nat outside
+ ip virtual-reassembly
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1/0
+!
+interface FastEthernet0/1/1
+!
+interface FastEthernet0/1/2
+!
+interface FastEthernet0/1/3
+!
+interface Serial0/0/0
+ no ip address
+ shutdown
+ clock rate 2000000
+!
+interface Serial0/0/1
+ no ip address
+ shutdown
+ clock rate 2000000
+!
+interface Vlan1
+ ip address 192.168.4.254 255.255.255.0
+ ip nat inside
+ ip virtual-reassembly
+!
+router ospf 1
+ router-id 1.1.1.1
+ log-adjacency-changes
+ passive-interface FastEthernet0/0
+ network 192.168.4.0 0.0.0.255 area 0.0.0.0
+ default-information originate
+!
+ip forward-protocol nd
+ip route 0.0.0.0 0.0.0.0 193.190.65.81
+ip route 192.168.6.0 255.255.255.0 192.168.4.1
+!
+!
+ip http server
+ip nat inside source list 2 interface FastEthernet0/1 overload
+ip nat inside source static tcp 192.168.5.1 80 193.190.65.86 80 extendable
+ip nat inside source static tcp 192.168.5.1 443 193.190.65.86 443 extendable
+ip nat inside source static udp 192.168.4.1 1194 193.190.65.86 1194 extendable
+!
+access-list 2 permit 192.168.0.0 0.0.255.255
+!
+!
+control-plane
+!
+!
+line con 0
+ password 7 112B1609035F5A5E57
+ logging synchronous
+ login
+line aux 0
+line vty 0 4
+ login local
+line vty 5 15
+ login local
+!
+scheduler allocate 20000 1000
+end
