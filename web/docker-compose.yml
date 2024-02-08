@@ -7,10 +7,8 @@ services:
             - "5432"
         volumes:
             - ~/apps/postgres:/var/lib/postgresql/data
-        environment:
-            - POSTGRES_USER=${POSTGRES_USER}
-            - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-            - POSTGRES_DB=${POSTGRES_DB}
+        env_file:
+            - stack.env
         networks:
             default:
                 ipv4_address: 10.0.10.254
