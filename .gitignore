@@ -38,3 +38,5 @@
 
 /web/website/app/*.env
 /web/db/*.env
+
+/web/*.env
