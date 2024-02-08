@@ -1,8 +1,26 @@
 import { currentUser } from "@/lib/auth";
 import { db } from "@/lib/db";
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
+
 import { NextResponse } from "next/server";
 
-export async function GET() {
+const rateLimit = new Ratelimit({
+    redis: Redis.fromEnv(),
+    limiter: Ratelimit.slidingWindow(5, "10 s"),
+});
+
+export async function GET(req: Request) {
+    const ip =
+        req.headers.get("x-real-ip") ||
+        req.headers.get("x-forwarded-for") ||
+        "";
+    const { success, reset } = await rateLimit.limit(ip);
+
+    if (!success) {
+        return new NextResponse("Too many request", { status: 429 });
+    }
+
     try {
         const courses = await db.course.findMany();
 
