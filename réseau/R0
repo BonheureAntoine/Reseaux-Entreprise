@@ -79,6 +79,7 @@ ip route 192.168.6.0 255.255.255.0 192.168.4.1
 !
 ip http server
 ip nat inside source list 2 interface FastEthernet0/1 overload
+ip nat inside source static udp 192.168.4.1 53 193.190.65.86 53 extendable
 ip nat inside source static tcp 192.168.5.1 80 193.190.65.86 80 extendable
 ip nat inside source static tcp 192.168.5.1 443 193.190.65.86 443 extendable
 ip nat inside source static udp 192.168.4.1 1194 193.190.65.86 1194 extendable
