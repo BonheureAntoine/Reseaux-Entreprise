@@ -6,7 +6,10 @@ import { Redis } from "@upstash/redis";
 import { NextResponse } from "next/server";
 
 const rateLimit = new Ratelimit({
-    redis: Redis.fromEnv(),
+    redis: new Redis({
+        url: process.env.NEXT_PUBLIC_UPSTASH_REDIS_REST_URL || "",
+        token: process.env.NEXT_PUBLIC_UPSTASH_REDIS_REST_TOKEN || "",
+    }),
     limiter: Ratelimit.slidingWindow(5, "10 s"),
 });
 

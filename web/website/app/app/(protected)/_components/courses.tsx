@@ -8,9 +8,11 @@ import {
     CardHeader,
 } from "@/components/ui/card";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export const Courses = () => {
+    const router = useRouter();
     const [courses, setCourses] = useState([]);
 
     useEffect(() => {
@@ -22,6 +24,8 @@ export const Courses = () => {
             .catch((error) => {
                 console.log(error);
             });
+
+        router.refresh();
     });
 
     return (

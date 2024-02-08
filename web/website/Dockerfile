@@ -11,16 +11,15 @@ RUN npm install
 
 RUN npm i sharp
 
-COPY ./entrypoint.sh ./entrypoint.sh
-RUN chmod +x ./entrypoint.sh
+# COPY ./entrypoint.sh ./entrypoint.sh
+# RUN chmod +x ./entrypoint.sh
 
 RUN npx prisma generate
 
+RUN npm run build
 
 EXPOSE 3000
 
-CMD [ "npm", "run", "dev" ] 
-
-
-
 # ENTRYPOINT [ "./entrypoint.sh" ]
+
+CMD [ "npm", "run", "start"]

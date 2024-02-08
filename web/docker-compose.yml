@@ -19,17 +19,8 @@ services:
         ports:
             - "3001-3010:3000"
         restart: always
-        environment:
-            - NODE_ENV=${NODE_ENV}
-            - DATABASE_URL=${DATABASE_URL}
-            - AUTH_SECRET=${AUTH_SECRET}
-            - GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID}
-            - GITHUB_CLIENT_SECRET=${GITHUB_CLIENT_SECRET}
-            - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
-            - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
-            - RESEND_API_KEY=${RESEND_API_KEY}
-            - UPSTASH_REDIS_REST_URL=${UPSTASH_REDIS_REST_URL}
-            - UPSTASH_REDIS_REST_TOKEN=${UPSTASH_REDIS_REST_TOKEN}
+        env_file:
+            - .env
         networks:
             - default
         depends_on:
