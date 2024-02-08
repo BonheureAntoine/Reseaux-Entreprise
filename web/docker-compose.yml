@@ -20,7 +20,7 @@ services:
             - "3001-3010:3000"
         restart: always
         env_file:
-            - .env
+            - stack.env
         networks:
             - default
         depends_on:
