@@ -1,4 +1,3 @@
-FROM redis
-RUN apt-get update && apt-get install -y
+FROM redis:7.2.4-alpine
 
 EXPOSE 6379
