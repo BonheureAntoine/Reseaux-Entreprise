@@ -51,8 +51,8 @@ export const CourseDialog = () => {
                 console.log(error);
             });
         form.reset();
-        setIsOpen(false);
         router.refresh();
+        setIsOpen(false);
     };
 
     return (
