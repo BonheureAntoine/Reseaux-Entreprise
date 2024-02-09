@@ -37,9 +37,11 @@ ip ssh version 2
 !
 interface FastEthernet0/1
  switchport mode trunk
+ switchport trunk allowed vlan 10,30,110
 !
 interface FastEthernet0/2
  switchport mode trunk
+ switchport trunk allowed vlan 10,30,110
 !
 interface FastEthernet0/3
  switchport access vlan 10
@@ -51,12 +53,15 @@ interface FastEthernet0/4
 !
 interface FastEthernet0/5
  switchport mode trunk
+ switchport trunk allowed vlan 10,30,110
 !
 interface FastEthernet0/6
  switchport mode trunk
+ switchport trunk allowed vlan 10,30,110
 !
 interface FastEthernet0/7
  switchport mode trunk
+ switchport trunk allowed vlan 10,30,110
 !
 interface FastEthernet0/8
 !
