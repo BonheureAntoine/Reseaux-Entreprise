@@ -107,14 +107,6 @@ interface Vlan10
  standby 10 priority 95
  standby 10 preempt
 !
-interface Vlan20
- ip address 192.168.2.253 255.255.255.0
- ip helper-address 192.168.2.1
- standby version 2
- standby 20 ip 192.168.2.254
- standby 20 priority 95
- standby 20 preempt
-!
 interface Vlan30
  ip address 192.168.3.253 255.255.255.0
  ip helper-address 192.168.2.1
@@ -134,8 +126,8 @@ router ospf 1
  router-id 3.3.3.3
  log-adjacency-changes
  network 192.168.1.0 0.0.0.255 area 0.0.0.0
- network 192.168.2.0 0.0.0.255 area 0.0.0.0
  network 192.168.3.0 0.0.0.255 area 0.0.0.0
+ network 192.168.11.0 0.0.0.255 area 0.0.0.0
 !
 ip classless
 ip http server
